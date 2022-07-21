@@ -1,30 +1,49 @@
 ---
 categories: 이야기
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "첫 글"
 date:   2022-07-21 21:38:29 +0900
 categories: jekyll update
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+저키로 처음 블로그를 만들어보았다
 
-Jekyll requires blog post files to be named according to the following format:
+마크다운도 처음써보는데 신기하다
 
-`YEAR-MONTH-DAY-title.MARKUP`
+```c++
+#include <bits/stdc++.h>
+#define ll long long int
+#define swap(a,b) {ll c; c=a;a=b;b=c;}
+#define MOD 1000000007
+#define pii pair<int,int>
+#define iii tuple<int,int,int>
+using namespace std;
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+ll multi(ll i,ll k){
+    if(k==1) return i;
+    if(k==0) return 1;
+    if(k%2==1) return ((i*multi(i,k/2))%MOD*multi(i,k/2))%MOD;
+    else return (multi(i,k/2)*multi(i,k/2))%MOD;
+}
 
-Jekyll also offers powerful support for code snippets:
+int main(){
+    int n,k,a[2001];
+    cin>>n>>k;
+    for(int i=0;i<n;i++) cin>>a[i];
+    ll setsu = 1;
+    for(int i=0;i<k-1;i++){
+        setsu = (setsu*2)%MOD;
+    }
+    ll ncrtop = 1, ncrbot = 1;
+    for(int i=0;i<k;i++){
+        ncrtop = (ncrtop*(n-i))%MOD;
+        ncrbot = (ncrbot*(i+1))%MOD;
+    }
+    ll div = (ncrtop*multi(ncrbot,MOD-2))%MOD;
+    cout<<(setsu*div)%MOD;
+}
+```
+신기하지 않은가?? 아닌가??
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+> 이런것도 된다!
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+* 이것도 있다...
